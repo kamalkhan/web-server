@@ -1,12 +1,21 @@
 <?php
 
+/*
+ * This file is part of bhittani/web-server.
+ *
+ * (c) Kamal Khan <shout@bhittani.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace Bhittani\WebServer;
 
 use Symfony\Component\Process\PhpExecutableFinder;
 
 class Php extends Server
 {
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     protected function getCommand()
     {
         return [
@@ -26,6 +35,6 @@ class Php extends Server
      */
     protected function getPhpBinary()
     {
-        return (new PhpExecutableFinder)->find(false);
+        return (new PhpExecutableFinder())->find(false);
     }
 }
