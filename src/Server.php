@@ -1,8 +1,16 @@
 <?php
 
+/*
+ * This file is part of bhittani/web-server.
+ *
+ * (c) Kamal Khan <shout@bhittani.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace Bhittani\WebServer;
 
-use Bhittani\WebServer\Contract;
 use Symfony\Component\Process\Process;
 
 abstract class Server implements Contract
@@ -31,7 +39,7 @@ abstract class Server implements Contract
     /**
      * Server port.
      *
-     * @var integer
+     * @var int
      */
     protected $port = 9001;
 
@@ -45,7 +53,7 @@ abstract class Server implements Contract
     /**
      * Milliseconds to wait after the process starts.
      *
-     * @var integer
+     * @var int
      */
     protected $wait = 180;
 
@@ -62,7 +70,7 @@ abstract class Server implements Contract
      * @param string $file
      * @param string $path
      * @param string $host
-     * @param int $port
+     * @param int    $port
      * @param string $url
      */
     public function __construct($file, $path = null, $host = null, $port = null, $url = null)
@@ -153,13 +161,13 @@ abstract class Server implements Contract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      *
      * @param null|int $wait
      */
     public function start($wait = null)
     {
-        if (! $this->isRunning()) {
+        if (!$this->isRunning()) {
             $this->process = $this->makeProcess();
 
             $this->process->start();
@@ -169,7 +177,7 @@ abstract class Server implements Contract
         }
     }
 
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     public function stop()
     {
         if ($this->isRunning()) {
@@ -179,19 +187,19 @@ abstract class Server implements Contract
         $this->process = null;
     }
 
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     public function isRunning()
     {
         return $this->process && $this->process->isRunning();
     }
 
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     public function getUrl()
     {
         return $this->url ?: rtrim("http://{$this->host}:{$this->port}", ':');
     }
 
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     public function getPath()
     {
         return $this->path;
@@ -224,7 +232,6 @@ abstract class Server implements Contract
      */
     protected function getCwd()
     {
-        return null;
     }
 
     /**
