@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of bhittani/web-server.
+ *
+ * (c) Kamal Khan <shout@bhittani.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 $file = getenv('PHP_SERVER_FILE');
 $path = rtrim(getenv('PHP_SERVER_PATH') ?: __DIR__, '/');
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -8,7 +17,7 @@ $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 // $_SERVER['HTTP_HOST'] = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
 
 if ($uri !== '/' && file_exists($path.rtrim($uri, '/').'/index.php')) {
-    $_SERVER['REQUEST_URI'] = rtrim($uri, '/') . '/';
+    $_SERVER['REQUEST_URI'] = rtrim($uri, '/').'/';
 }
 
 if ($uri !== '/' && file_exists($path.$uri)) {
