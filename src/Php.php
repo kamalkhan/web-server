@@ -24,8 +24,23 @@ class Php extends Server
             "{$this->host}:{$this->port}",
             '-t',
             $this->path,
-            $this->file,
+            __DIR__.'/../servers/server.php',
         ];
+    }
+
+    /** {@inheritdoc} */
+    protected function getEnv()
+    {
+        return [
+            'PHP_SERVER_FILE' => $this->file,
+            'PHP_SERVER_PATH' => $this->path,
+        ];
+    }
+
+    /** {@inheritdoc} */
+    protected function getCwd()
+    {
+        return $this->path;
     }
 
     /**
